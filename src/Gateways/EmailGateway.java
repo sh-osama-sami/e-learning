@@ -2,11 +2,12 @@ package Gateways;
 
 import Messages.DailyNewsEmailMessage;
 import Messages.GradesAnnouncementEmailMessage;
+import Messages.Message;
 import Messages.TaskAddedEmailMessage;
 
-public class EmailGateway implements GateAway{
+public class EmailGateway implements Gateway {
 	
-	public void sendMessage(Object message, String user) {
+	public void sendMessage(Message message, String user,String content[]) {
 		String[] placeHolders = new String[] {}; // set some place holders here 
 		
 		if(message instanceof DailyNewsEmailMessage) {
