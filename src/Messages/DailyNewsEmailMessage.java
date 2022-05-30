@@ -1,9 +1,11 @@
 package Messages;
 
-public class DailyNewsEmailMessage implements DailyNews {
+public class DailyNewsEmailMessage extends EmailMessage {
 	
-	public String prepareMessage(String placeHolders[]) {
+
+	@Override
+	public String prepareMessage(String[] content) {
 		// code to replace place holders of this type
-		return "";
+		return " Latest news : "+content[0];
 	}
 }

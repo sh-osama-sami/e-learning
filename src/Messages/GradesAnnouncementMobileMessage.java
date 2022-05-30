@@ -1,15 +1,19 @@
 package Messages;
 
-public class GradesAnnouncementMobileMessage implements GradesAnnouncement {
+public class GradesAnnouncementMobileMessage extends SmsMessage{
 
-	public String prepareMessage(String placeHolders[]) {
-		// code to replace place holders of this type
-		return "";
-	}
 	
+	
+	@Override
+	public String prepareMessage(String[] content) {
+			// code to replace place holders of this type
+		return " task "+content[0]+"grade is "+content[1];
+	}
 	public boolean verifyGrades() {
 		// code to verify Grades before announcement
-		
-		return true;
+		//TODO
+		return false;
 	}
+	
+	
 }

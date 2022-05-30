@@ -1,15 +1,19 @@
 package Messages;
 
-public class GradesAnnouncementEmailMessage implements GradesAnnouncement {
+public class GradesAnnouncementEmailMessage extends EmailMessage{
 
-	public String prepareMessage(String placeHolders[]) {
+	
+	@Override
+	public String prepareMessage(String[] content) {
 		// code to replace place holders of this type
-		return "";
+		return " task "+content[0]+"grade is "+content [1];
+		
+	}
+
+	public boolean verifyGrades() {	
+		// code to verify Grades before announcement
+		return false;
 	}
 	
-	public boolean verifyGrades() {
-		// code to verify Grades before announcement
-		
-		return true;
-	}
+	
 }
