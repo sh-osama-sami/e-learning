@@ -1,9 +1,10 @@
 package Messages;
 
-public class DailyNewsMobileMessage implements DailyNews{
+public class DailyNewsMobileMessage  extends SmsMessage {
 	
-	public String prepareMessage(String placeHolders[]) {
-		// code to replace place holders of this type
-		return "";
+	@Override
+	public String prepareMessage(String[] content) {
+		
+		return " Latest news : "+content[0];
 	}
 }
