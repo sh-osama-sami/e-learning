@@ -1,6 +1,6 @@
 package messages;
 
-public class GradesAnnouncementEmailMessage extends EmailMessage{
+public class GradesAnnouncementEmailMessage extends GradesAnnouncement {
 
 	
 	@Override
@@ -10,10 +10,7 @@ public class GradesAnnouncementEmailMessage extends EmailMessage{
 		
 	}
 
-	public boolean verifyGrades() {	
-		// code to verify Grades before announcement
-		return false;
-	}
+	
 	
 	
 }
