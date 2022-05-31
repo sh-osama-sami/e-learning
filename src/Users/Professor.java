@@ -2,7 +2,7 @@ package Users;
 
 import java.sql.Date;
 
-public class Professor {
+public class Professor implements User {
 	String name;
 	String department;
 	Date hirringDate;
@@ -69,7 +69,7 @@ public class Professor {
 	}
 	
 	
-	public void notifyProfessor(String message) {
+	public void updateMe(String message) {
 		// do some stuff
 		
 	}
