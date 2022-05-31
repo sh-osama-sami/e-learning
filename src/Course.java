@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 
+import Factory.EmailMessageFactory;
+import Factory.Factory;
 import Gateways.EmailGateway;
-import Messages.TaskAddedEmailMessage;
-import Users.Professor;
-import Users.Student;
-import Users.TA;
+import Gateways.Gateway;
+import Messages.Message;
+import Users.User;
 
 public class Course {
 	
@@ -13,16 +14,8 @@ public class Course {
 	ArrayList<String> announcements;
 	ArrayList<String> exams;
 	ArrayList<String> grades;
-	
-	ArrayList<Professor> professorsForEmailNotification;
-	ArrayList<Professor> professorsForSMSNotification;
-	
-	ArrayList<TA> TAsForEmailNotification;
-	ArrayList<TA> TAsForSMSNotification;
-	
-	ArrayList<Student> studentsForEmailNotification;
-	ArrayList<Student> studentsForSMSNotification;
-	
+	ArrayList<User> userForEmailNotification;
+	ArrayList<User> userForSMSNotification;
 	public Course(String name, String code) {
 		super();
 		this.name = name;
@@ -32,14 +25,8 @@ public class Course {
 		exams = new ArrayList<String>();
 		grades = new ArrayList<String>();
 		
-		professorsForEmailNotification = new ArrayList<Professor>();
-		professorsForSMSNotification = new ArrayList<Professor>();
-		
-		TAsForEmailNotification = new ArrayList<TA>();
-		TAsForSMSNotification = new ArrayList<TA>();
-		
-		studentsForEmailNotification = new ArrayList<Student>();
-		studentsForSMSNotification = new ArrayList<Student>();
+		userForEmailNotification = new ArrayList<User>();
+		userForSMSNotification = new ArrayList<User>();
 	}
 
 	public String getName() {
@@ -58,66 +45,41 @@ public class Course {
 		this.code = code;
 	}
 	
-	public void subscribeProfessorForEmailNotification(Professor professor) {
-		professorsForEmailNotification.add(professor);
+	public void subscribeUserForEmailNotification(User user) {
+		userForEmailNotification.add(user);
 	}
 	
-	public void subscribeProfessorForSMSNotification(Professor professor) {
-		professorsForSMSNotification.add(professor);
+	public void subscribeUserForSMSNotification(User user) {
+		userForSMSNotification.add(user);
 	}
-	
-	public void subscribeTAForEmailNotification(TA ta) {
-		TAsForEmailNotification.add(ta);
-	}
-	
-	public void subscribeTAForSMSNotification(TA ta) {
-		TAsForSMSNotification.add(ta);
-	}
-	
-	public void subscribeStudentForEmailNotification(Student student) {
-		studentsForEmailNotification.add(student);
-	}
-	
-	public void subscribeStudentForSMSNotification(Student student) {
-		studentsForSMSNotification.add(student);
-	}
-	
-	
-	
+
 	public void AddAssignment(String assignName, String assignBody) {
 		announcements.add(assignName);
-		String[] placeholders = new String[] {assignName, assignBody};
+		String[] Assignment = new String[] {assignName, assignBody};
 		// do some logic here 
 		
-		notifyAllUsers(placeholders);
+		notifyAllUsers(Assignment);
 	}
 	
 	// AddExam, PostGrades, PostAnnouncement  will be the same 
 
-	private void notifyAllUsers(String[] placeholders) {
+	private void notifyAllUsers(String[] Assignment) {
 		// notify users by email
-		TaskAddedEmailMessage msg = new TaskAddedEmailMessage();
-		String notification = msg.prepareMessage(placeholders);
-		
+
+		Factory emailMessageFactory = new EmailMessageFactory();
+		Message msg = emailMessageFactory.createTask();
+		String notification = msg.prepareMessage(Assignment);
+
 		// open connection for Email gateway and do some configurations to the object
+
+		Gateway emailGateway = new EmailGateway();
 		
-		EmailGateway emailGateway = new EmailGateway();
-		
-		
-		for (Professor professor : professorsForEmailNotification) {
-			professor.notifyProfessor(notification);
-			emailGateway.sendMessage(notification, professor.getEmail());
+		for (User subscriber : userForEmailNotification) {
+			subscriber.updateMe(notification);
+			emailGateway.sendMessage(msg, subscriber.getEmail(),Assignment);
 		}
-		
-		for (TA ta : TAsForEmailNotification) {
-			ta.notifyTA(notification);
-			emailGateway.sendMessage(notification, ta.getEmail());
-		}
-		
-		for (Student student : studentsForSMSNotification) {
-			student.notifyStudent(notification);
-			emailGateway.sendMessage(notification, student.getEmail());
-		}
+
+
 	}
 	
 	
