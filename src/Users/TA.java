@@ -1,6 +1,6 @@
 package Users;
 
-public class TA {
+public class TA implements User {
 	String name;
 	String department;
 	String email;
@@ -52,7 +52,7 @@ public class TA {
 		this.department = department;
 	}
 	
-	public void notifyTA(String message) {
+	public void updateMe(String message) {
 		// do some stuff
 		
 	}
