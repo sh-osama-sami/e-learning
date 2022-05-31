@@ -1,13 +1,13 @@
-package Gateways;
+package gateways;
 
-import Messages.DailyNewsMobileMessage;
-import Messages.GradesAnnouncementMobileMessage;
-import Messages.Message;
-import Messages.TaskAddedMobileMessage;
+
+import messages.Message;
+
 
 public class SMSGateway {
 	
-	public void sendMessage(Message message, String user,String content[]) {
+	public void sendMessage(Message message, String user,String[] content) {
+		content[2]=user;
 		message.prepareMessage(content);
 		
 	}

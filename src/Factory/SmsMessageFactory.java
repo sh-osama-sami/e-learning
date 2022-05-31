@@ -1,12 +1,10 @@
-package Factory;
+package factory;
 
 
-import Messages.DailyNewsMobileMessage;
-
-import Messages.GradesAnnouncementMobileMessage;
-import Messages.Message;
-
-import Messages.TaskAddedMobileMessage;
+import messages.DailyNewsMobileMessage;
+import messages.GradesAnnouncementMobileMessage;
+import messages.Message;
+import messages.TaskAddedMobileMessage;
 
 public class SmsMessageFactory implements Factory   {
 

@@ -1,4 +1,4 @@
-package Messages;
+package messages;
 
 public class GradesAnnouncementEmailMessage extends EmailMessage{
 
