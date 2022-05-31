@@ -1,6 +1,6 @@
 package messages;
 
-public class GradesAnnouncementMobileMessage extends SmsMessage{
+public class GradesAnnouncementMobileMessage extends GradesAnnouncement {
 
 	
 	
@@ -9,11 +9,7 @@ public class GradesAnnouncementMobileMessage extends SmsMessage{
 			// code to replace place holders of this type
 		return " task "+content[0]+"grade is "+content[1];
 	}
-	public boolean verifyGrades() {
-		// code to verify Grades before announcement
-		//TODO
-		return false;
-	}
+	
 	
 	
 }

@@ -1,6 +1,6 @@
 package messages;
 
-public class DailyNewsMobileMessage  extends SmsMessage {
+public class DailyNewsMobileMessage implements Message  {
 	
 	@Override
 	public String prepareMessage(String[] content) {

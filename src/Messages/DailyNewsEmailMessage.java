@@ -1,6 +1,6 @@
 package messages;
 
-public class DailyNewsEmailMessage extends EmailMessage {
+public class DailyNewsEmailMessage implements Message  {
 	
 
 	@Override

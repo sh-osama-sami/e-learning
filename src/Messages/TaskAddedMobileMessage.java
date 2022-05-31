@@ -2,7 +2,7 @@ package messages;
 
 
 
-public class TaskAddedMobileMessage  extends SmsMessage{
+public class TaskAddedMobileMessage  extends TaskAdded {
 
 	public String prepareMessage(String[] content) {
 		// code to replace place holders of this type
@@ -11,7 +11,5 @@ public class TaskAddedMobileMessage  extends SmsMessage{
 	}
 	
 	
-	public void addTeamDescription(String desc) {
-		//TODO
-	}
+	
 }

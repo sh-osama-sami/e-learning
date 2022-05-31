@@ -1,8 +1,6 @@
 package subjects;
 import java.util.ArrayList;
 
-import factory.EmailMessageFactory;
-import factory.Factory;
 import gateways.EmailGateway;
 import gateways.Gateway;
 import messages.Message;
@@ -59,21 +57,18 @@ public class Course {
 		String[] assignment = new String[] {assignName, assignBody};
 		// do some logic here 
 		
-		notifyAllUsers(assignment);
+		notifyAllUsers(assignment,"task");
 	}
 	
 	// AddExam, PostGrades, PostAnnouncement  will be the same 
 
-	private void notifyAllUsers(String[] assignment) {
+	private void notifyAllUsers(String[] assignment,String type) {
 		// notify users by email
-
-		Factory emailMessageFactory = new EmailMessageFactory();
-		Message msg = emailMessageFactory.createTask();
-		String notification = msg.prepareMessage(assignment);
-
 		// open connection for Email gateway and do some configurations to the object
 
 		Gateway emailGateway = new EmailGateway();
+		Message msg = emailGateway.createMessage(type);
+		String notification = msg.prepareMessage(assignment);
 		
 		for (User subscriber : userForEmailNotification) {
 			subscriber.updateMe(notification);

@@ -1,6 +1,6 @@
 package messages;
 
-public class TaskAddedEmailMessage extends EmailMessage {
+public class TaskAddedEmailMessage extends TaskAdded {
 
 	public String prepareMessage(String[] content) {
 		// code to replace place holders of this type
@@ -8,8 +8,6 @@ public class TaskAddedEmailMessage extends EmailMessage {
 		
 	}
 	
-	public void addTeamDescription(String desc) {
-		//TODO
-	}
+	
 	
 }
