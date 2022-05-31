@@ -1,6 +1,6 @@
-package Messages;
+package messages;
 
 public interface DailyNews {
-    public String prepareMessage(String placeHolders[]) ;
+    public String prepareMessage(String[] placeHolders) ;
 	
 }

@@ -1,11 +1,12 @@
+package subjects;
 import java.util.ArrayList;
 
-import Factory.EmailMessageFactory;
-import Factory.Factory;
-import Gateways.EmailGateway;
-import Gateways.Gateway;
-import Messages.Message;
-import Users.User;
+import factory.EmailMessageFactory;
+import factory.Factory;
+import gateways.EmailGateway;
+import gateways.Gateway;
+import messages.Message;
+import users.User;
 
 public class Course {
 	
@@ -21,12 +22,12 @@ public class Course {
 		this.name = name;
 		this.code = code;
 		
-		announcements = new ArrayList<String>();
-		exams = new ArrayList<String>();
-		grades = new ArrayList<String>();
+		announcements = new ArrayList<>();
+		exams = new ArrayList<>();
+		grades = new ArrayList<>();
 		
-		userForEmailNotification = new ArrayList<User>();
-		userForSMSNotification = new ArrayList<User>();
+		userForEmailNotification = new ArrayList<>();
+		userForSMSNotification = new ArrayList<>();
 	}
 
 	public String getName() {
@@ -53,22 +54,22 @@ public class Course {
 		userForSMSNotification.add(user);
 	}
 
-	public void AddAssignment(String assignName, String assignBody) {
+	public void addAssignment(String assignName, String assignBody) {
 		announcements.add(assignName);
-		String[] Assignment = new String[] {assignName, assignBody};
+		String[] assignment = new String[] {assignName, assignBody};
 		// do some logic here 
 		
-		notifyAllUsers(Assignment);
+		notifyAllUsers(assignment);
 	}
 	
 	// AddExam, PostGrades, PostAnnouncement  will be the same 
 
-	private void notifyAllUsers(String[] Assignment) {
+	private void notifyAllUsers(String[] assignment) {
 		// notify users by email
 
 		Factory emailMessageFactory = new EmailMessageFactory();
 		Message msg = emailMessageFactory.createTask();
-		String notification = msg.prepareMessage(Assignment);
+		String notification = msg.prepareMessage(assignment);
 
 		// open connection for Email gateway and do some configurations to the object
 
@@ -76,7 +77,7 @@ public class Course {
 		
 		for (User subscriber : userForEmailNotification) {
 			subscriber.updateMe(notification);
-			emailGateway.sendMessage(msg, subscriber.getEmail(),Assignment);
+			emailGateway.sendMessage(msg, subscriber.getEmail(),assignment);
 		}
 
 

@@ -1,5 +1,5 @@
-package Messages;
+package messages;
 
 public  interface Message {
-    public String prepareMessage(String content[]) ;
+    public String prepareMessage(String[] content) ;
 }

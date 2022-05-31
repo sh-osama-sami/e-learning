@@ -1,7 +1,7 @@
-package Gateways;
+package gateways;
 
-import Messages.Message;
+import messages.Message;
 
 public interface Gateway {
-    public void sendMessage(Message message, String user,String content[]);
+    public void sendMessage(Message message, String user,String[] content);
 }

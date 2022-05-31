@@ -1,11 +1,9 @@
-package Factory;
+package factory;
 
-import Messages.DailyNewsEmailMessage;
-
-
-import Messages.GradesAnnouncementEmailMessage;
-import Messages.Message;
-import Messages.TaskAddedEmailMessage;
+import messages.DailyNewsEmailMessage;
+import messages.GradesAnnouncementEmailMessage;
+import messages.Message;
+import messages.TaskAddedEmailMessage;
 
 public class EmailMessageFactory implements Factory {
 

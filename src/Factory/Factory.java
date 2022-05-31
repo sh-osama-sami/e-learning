@@ -1,6 +1,6 @@
-package Factory;
+package factory;
 
-import Messages.Message;
+import messages.Message;
 
 public interface Factory {
     public Message createDaily() ;
